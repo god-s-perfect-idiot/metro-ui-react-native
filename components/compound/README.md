@@ -17,7 +17,7 @@ Usage: This component is used to display a page and a menu stacked.
 
 ```typescript
     object: {
-        menuType: "simple" | "icon-list" | "custom-list"
+        menuType: "simple" | "icon-list" | "custom-list" | "none"
         list?: [
             {
                 text: string,

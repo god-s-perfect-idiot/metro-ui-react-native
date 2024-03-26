@@ -189,3 +189,28 @@ TextBox with title "Enter your name"
 ```jsx
         <TextBox defaultValue="John Doe" onChangeText={(value) => console.log(value)} onSubmitText={(value) => console.log(value)} title="Enter your name" placeholder="John Doe" />
 ```
+
+## Switch
+
+Usage: This component is used to display a switch with a label.
+
+### Params
+
+- defaultValue: The default value of the switch.
+- onChange: The function to be called when the switch value is changed.
+- title: The title to be displayed on the switch.
+- description?: The description to be displayed on the switch.
+
+### Examples
+
+Switch with title "Enable Notifications"
+
+```jsx
+        <Switch defaultValue={true} onChange={(value) => console.log(value)} title="Enable Notifications" />
+```
+
+Switch with title "Enable Notifications" and description "This will enable notifications"
+
+```jsx
+        <Switch defaultValue={true} onChange={(value) => console.log(value)} title="Enable Notifications" description="This will enable notifications" />
+```

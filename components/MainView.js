@@ -5,6 +5,8 @@ import { PageView } from "./compound/PageView";
 import { Select } from "./core/action/Select";
 import { Button } from "./core/action/Button";
 import Link from "./core/action/Link";
+import { TextBox } from "./core/action/TextBox";
+import { Switch } from "./core/action/Switch";
 
 const Page = () => {
   return (
@@ -26,6 +28,12 @@ const Page = () => {
       </View>
       <View className="mb-8">
         <Link text="Learn More using this link" onPress={() => console.log("clicked")}/>
+      </View>
+      <View className="mb-8">
+        <TextBox placeholder="Enter your text here" onChange={(e) => console.log(e)} title="This is a text box"/>
+      </View>
+      <View className="mb-8">
+        <Switch title="This is a switch" onChange={(e) => console.log(e)} description="This is what a switch would look like. You can change the value by touching the slider."/>
       </View>
     </View>
   );

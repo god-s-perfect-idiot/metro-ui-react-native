@@ -12,6 +12,7 @@ const renderMenu = (menu) => {
       // fix this
     case "custom-list":
         // fix this
+    case "none":
     default:
       return <View></View>;
   }
