@@ -41,11 +41,35 @@ export const MenuBar = ({ options, controls }) => {
   }
 };
 
+export const iconList = ({ options }) => {
+  return (
+    <View className="flex flex-row">
+      {options.map((option, index) => {
+        return (
+          <TouchableWithoutFeedback onPress={option.onPress} key={index}>
+            <View className="flex flex-col justify-between items-center mx-4 my-2 mb-3">
+              <RoundedButton Icon={option.icon} />
+              {expanded && (
+                <Text
+                  className="text-white text-xs lowercase"
+                  style={fonts.light}
+                >
+                  {option.text}
+                </Text>
+              )}
+            </View>
+          </TouchableWithoutFeedback>
+        );
+      })}
+    </View>
+  );
+};
+
 export const QuickMenu = ({ options }) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <View
-      className={` ${
+      className={`absolute bottom-0 ${
         expanded ? "h-20" : "h-14"
       } flex flex-row w-full bg-[#222] `}
     >
@@ -54,10 +78,13 @@ export const QuickMenu = ({ options }) => {
         {options.map((option, index) => {
           return (
             <TouchableWithoutFeedback onPress={option.onPress} key={index}>
-              <View className="flex flex-col justify-between items-start mx-4 my-2 mb-3">
-                <RoundedButton Icon={option.Icon} />
+              <View className="flex flex-col justify-between items-center mx-4 my-2 mb-3">
+                <RoundedButton Icon={option.icon} />
                 {expanded && (
-                  <Text className="text-white text-sm" style={fonts.light}>
+                  <Text
+                    className="text-white text-xs lowercase"
+                    style={fonts.light}
+                  >
                     {option.text}
                   </Text>
                 )}

@@ -17,8 +17,7 @@ Usage: This component is used to display a page and a menu stacked.
 
 ```typescript
     object: {
-        expandedType: "description" | "list" | "custom",
-        collapsedType: "no-icon" | "icon" | "custom",
+        menuType: "simple" | "icon-list" | "custom-list"
         list?: [
             {
                 text: string,
@@ -26,8 +25,7 @@ Usage: This component is used to display a page and a menu stacked.
                 Icon?: ReactNode,
             }
         ],
-        customMenu?: ReactNode,
-        customContent?: ReactNode,
+        custom?: ReactNode,
     }
 ```
 
@@ -41,8 +39,7 @@ Page with description menu and icon collapsed menu
                 <Text>Page Content</Text>
             </View>
         } menu={
-            expandedType: "description",
-            collapsedType: "icon",
+            menuType: "simple",
             list: [
                 {
                     text: "done",
@@ -58,29 +55,6 @@ Page with description menu and icon collapsed menu
         } />
 ```
 
-Page with list menu and no-icon collapsed menu 
-
-```jsx
-        <PageView page={
-            <View>
-                <Text>Page Content</Text>
-            </View>
-        } menu={
-            expandedType: "list",
-            collapsedType: "no-icon",
-            list: [
-                {
-                    text: "done",
-                    onPress: () => console.log("done"),
-                },
-                {
-                    text: "cancel",
-                    onPress: () => console.log("cancel"),
-                },
-            ],
-        } />
-```
-
 Page with custom menu and custom content
 
 ```jsx
@@ -89,23 +63,7 @@ Page with custom menu and custom content
                 <Text>Page Content</Text>
             </View>
         } menu={
-            expandedType: "custom",
-            collapsedType: "custom",
-            customMenu: <CustomMenu />,
-            customContent: <CustomContent />,
-        } />
-```
-
-Page with list menu and custom content (eg: Browser)
-
-```jsx
-        <PageView page={
-            <View>
-                <Text>Page Content</Text>
-            </View>
-        } menu={
-            expandedType: "list",
-            collapsedType: "custom",
+            menu: "custom-list",
             list: [
                 {
                     text: "done",
@@ -116,6 +74,31 @@ Page with list menu and custom content (eg: Browser)
                     onPress: () => console.log("cancel"),
                 },
             ],
-            customMenu: <CustomContent />,
+            custom: <CustomMenu />,
+        } />
+```
+
+Page with list menu and custom content
+
+```jsx
+        <PageView page={
+            <View>
+                <Text>Page Content</Text>
+            </View>
+        } menu={
+            menuType: "icon-list",
+            list: [
+                {
+                    text: "done",
+                    onPress: () => console.log("done"),
+                    icon: <Check width={20} stroke={"white"} strokeWidth={3} />,
+                },
+                {
+                    text: "cancel",
+                    onPress: () => console.log("cancel"),
+                    icon: <X width={20} stroke={"white"} strokeWidth={3} />,
+                },
+            ],
+            custom: <CustomContent />,
         } />
 ```
