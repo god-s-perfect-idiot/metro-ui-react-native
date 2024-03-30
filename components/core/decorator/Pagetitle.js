@@ -1,10 +1,18 @@
-import { Text } from "react-native"
-import { fonts } from "../../../styles/fonts"
+import { Text, View } from "react-native";
+import { fonts } from "../../../styles/fonts";
+import * as Animatable from "react-native-animatable";
 
-export const PageTitle = ({title, isUpperCase=false}) => {
-    return (
-        <Text className={`text-white text-5xl ${isUpperCase ? "" : "lowercase"}`} style={fonts.light}>
-            {title} 
-        </Text>
-    )
-}
+const AnimatedView = Animatable.createAnimatableComponent(View);
+
+export const PageTitle = ({ title, isUpperCase = false }) => {
+  return (
+    <AnimatedView animation="fadeInLeft" duration={300} delay={0}>
+      <Text
+        className={`text-white text-5xl ${isUpperCase ? "" : "lowercase"}`}
+        style={fonts.light}
+      >
+        {title}
+      </Text>
+    </AnimatedView>
+  );
+};

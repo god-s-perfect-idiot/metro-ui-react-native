@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
 import RoundedButton from "./RoundedButton";
+import * as Animatable from "react-native-animatable";
 import { fonts } from "../../../styles/fonts";
 
 const ShortMenu = ({ children, handleExpand }) => {
@@ -67,39 +68,47 @@ export const iconList = ({ options }) => {
 
 export const QuickMenu = ({ options }) => {
   const [expanded, setExpanded] = useState(false);
+  
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+
   return (
-    <View
-      className={`absolute bottom-0 ${
-        expanded ? "h-20" : "h-14"
-      } flex flex-row w-full bg-[#222] `}
+    <Animatable.View
+      transition={['height']}
+      duration={300}
+      style={{
+        height: expanded ? 80 : 56,
+        marginBottom: 0,
+        flexDirection: 'row',
+        backgroundColor: '#222',
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+      }}
     >
-      <View className="w-[15%] flex" />
-      <View className="w-[70%] justify-center flex-row">
-        {options.map((option, index) => {
-          return (
-            <TouchableWithoutFeedback onPress={option.onPress} key={index}>
-              <View className="flex flex-col justify-between items-center mx-4 my-2 mb-3">
-                <RoundedButton Icon={option.icon} />
-                {expanded && (
-                  <Text
-                    className="text-white text-xs lowercase"
-                    style={fonts.light}
-                  >
-                    {option.text}
-                  </Text>
-                )}
-              </View>
-            </TouchableWithoutFeedback>
-          );
-        })}
+      <View className={`w-[15%] flex`} />
+      <View className={`w-[70%] justify-center flex-row`}>
+        {options.map((option, index) => (
+          <TouchableWithoutFeedback onPress={option.onPress} key={index}>
+            <View className={`flex flex-col justify-between items-center mx-4 my-2 mb-3`}>
+              <RoundedButton Icon={option.icon} />
+              {expanded && (
+                <Text className={`text-white text-xs lowercase`}>
+                  {option.text}
+                </Text>
+              )}
+            </View>
+          </TouchableWithoutFeedback>
+        ))}
       </View>
-      <TouchableWithoutFeedback onPress={() => setExpanded(!expanded)}>
-        <View className="w-[15%] h-full items-start justify-center flex flex-row gap-1 pt-2">
-          <View className="w-1 h-1 bg-white rounded-full" />
-          <View className="w-1 h-1 bg-white rounded-full" />
-          <View className="w-1 h-1 bg-white rounded-full" />
+      <TouchableWithoutFeedback onPress={toggleExpanded}>
+        <View className={`w-[15%] h-full items-start justify-center flex flex-row gap-1 pt-2`}>
+          <View className={`w-1 h-1 bg-white rounded-full`} />
+          <View className={`w-1 h-1 bg-white rounded-full`} />
+          <View className={`w-1 h-1 bg-white rounded-full`} />
         </View>
       </TouchableWithoutFeedback>
-    </View>
+    </Animatable.View>
   );
 };

@@ -102,3 +102,21 @@ Page with list menu and custom content
             custom: <CustomContent />,
         } />
 ```
+
+## PageContent 
+
+Usage: This component is used to display a page content as a list of items.
+
+### Params
+
+- items: The list of items to be displayed. These are Components.
+
+### Examples
+
+```jsx
+        <PageContent items={[
+            <Text>Item 1</Text>,
+            <Text>Item 2</Text>,
+            <Text>Item 3</Text>,
+        ]} />
+```
