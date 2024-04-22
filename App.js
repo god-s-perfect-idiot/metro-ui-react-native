@@ -16,6 +16,9 @@ export default function App() {
         NotoSans_Light: require("./assets/fonts/NotoSans_Light.ttf"),
         NotoSans_Regular: require("./assets/fonts/NotoSans_Regular.ttf"),
         NotoSans_SemiBold: require("./assets/fonts/NotoSans_SemiBold.ttf"),
+        Selawk: require("./assets/fonts/selawk.ttf"),
+        SelawkLight: require("./assets/fonts/selawkl.ttf"),
+        SelawkSemiBold: require("./assets/fonts/selawksb.ttf"),
       });
       setFontLoaded(true);
     }

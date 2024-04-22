@@ -78,7 +78,8 @@ export const QuickMenu = ({ options }) => {
       transition={['height']}
       duration={300}
       style={{
-        height: expanded ? 80 : 56,
+        // if this looks ugly, its probable because of the hardcoded values
+        height: expanded ? 80 : 60,
         marginBottom: 0,
         flexDirection: 'row',
         backgroundColor: '#222',
@@ -88,13 +89,13 @@ export const QuickMenu = ({ options }) => {
       }}
     >
       <View className={`w-[15%] flex`} />
-      <View className={`w-[70%] justify-center flex-row`}>
+      <View className={`w-[70%] justify-center items-center flex-row`}>
         {options.map((option, index) => (
           <TouchableWithoutFeedback onPress={option.onPress} key={index}>
             <View className={`flex flex-col justify-between items-center mx-4 my-2 mb-3`}>
               <RoundedButton Icon={option.icon} />
               {expanded && (
-                <Text className={`text-white text-xs lowercase`}>
+                <Text className={`text-white text-xs lowercase mt-1`}>
                   {option.text}
                 </Text>
               )}

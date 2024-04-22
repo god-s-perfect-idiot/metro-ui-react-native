@@ -8,7 +8,7 @@ export const PageTitle = ({ title, isUpperCase = false }) => {
   return (
     <AnimatedView animation="fadeInLeft" duration={300} delay={0}>
       <Text
-        className={`text-white text-5xl ${isUpperCase ? "" : "lowercase"}`}
+        className={`text-white text-5xl pb-2 ${isUpperCase ? "" : "lowercase"}`}
         style={fonts.light}
       >
         {title}
