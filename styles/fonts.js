@@ -3,12 +3,12 @@ import { StyleSheet } from "react-native";
 // Change here for the NotoSans font family
 export const fonts = StyleSheet.create({
     regular: {
-        fontFamily: 'Selawk'
+        fontFamily: 'NotoSans_Regular'
     },
     light: {
-        fontFamily: 'SelawkLight'
+        fontFamily: 'NotoSans_Light'
     },
     semiBold: {
-        fontFamily: 'SelawkSemiBold'
+        fontFamily: 'NotoSans_SemiBold'
     },
 })
