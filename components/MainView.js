@@ -49,6 +49,10 @@ const Page = () => {
   );
 };
 
+const Simple = () => {
+  return <PageContent items={[<Text>Simple</Text>]} />;
+};
+
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
 export const MainView = ({ navigation, route }) => {
@@ -65,11 +69,14 @@ export const MainView = ({ navigation, route }) => {
 
   return (
     <View className="w-full h-full flex flex-col">
-      {/* {loading ? ( */}
+      {loading ? (
         <Loader text="Loading" />
-      {/* ) : (
+      ) : (
         <PageView
-          page={<Page />}
+          pages={[
+            { title: "homepage", content: <Page /> },
+            { title: "simple", content: <Simple /> },
+          ]}
           menu={{
             menuType: "simple",
             list: [
@@ -86,9 +93,8 @@ export const MainView = ({ navigation, route }) => {
             ],
           }}
           mainTitle={"Dummy Application"}
-          pageTitle={"homepage"}
         />
-      )} */}
+      )}
     </View>
   );
 };

@@ -4,11 +4,18 @@ import * as Animatable from "react-native-animatable";
 
 const AnimatedView = Animatable.createAnimatableComponent(View);
 
-export const PageTitle = ({ title, isUpperCase = false }) => {
+export const PageTitle = ({
+  title,
+  isUpperCase = false,
+  classOverride = "",
+  isActive = true,
+}) => {
   return (
     <AnimatedView animation="fadeInLeft" duration={300} delay={0}>
       <Text
-        className={`text-white text-5xl pb-2 ${isUpperCase ? "" : "lowercase"}`}
+        className={`${isActive ? "text-white" : "text-[#656565]"} text-5xl pb-2 ${
+          isUpperCase ? "" : "lowercase"
+        } ${classOverride}`}
         style={fonts.light}
       >
         {title}

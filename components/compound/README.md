@@ -8,10 +8,18 @@ Usage: This component is used to display a page and a menu stacked.
 
 ### Params
 
-- page: The actual content of the page to be rendered.
+- pages: The actual content of the pages to be rendered.
 - menu: The menu to be rendered on the right side of the page.
 - mainTitle?: The top title of the page context.
-- pageTitle?: The title of the page.
+
+### Page Params Breakdown
+
+```typescript
+    object: {
+        page: ReactNode,
+        title: string,
+    } []
+``` 
 
 ### Menu Params Breakdown
 
@@ -34,10 +42,12 @@ Usage: This component is used to display a page and a menu stacked.
 Page with description menu and icon collapsed menu
 
 ```jsx
-        <PageView page={
-            <View>
+        <PageView pages={[{
+            page: <View>
                 <Text>Page Content</Text>
-            </View>
+            </View>, 
+            title: "Page Title"
+        }]
         } menu={
             menuType: "simple",
             list: [
@@ -55,13 +65,24 @@ Page with description menu and icon collapsed menu
         } />
 ```
 
-Page with custom menu and custom content
+Page with custom menu and custom content for 2 pages
 
 ```jsx
         <PageView page={
-            <View>
-                <Text>Page Content</Text>
-            </View>
+            [
+                {
+                    page: <View>
+                        <Text>Page Content</Text>
+                    </View>, 
+                    title: "Page Title"
+                },
+                {
+                    page: <View>
+                        <Text>Page Content 2</Text>
+                    </View>, 
+                    title: "Page Title 2"
+                },
+            ]
         } menu={
             menu: "custom-list",
             list: [
@@ -82,9 +103,20 @@ Page with list menu and custom content
 
 ```jsx
         <PageView page={
-            <View>
-                <Text>Page Content</Text>
-            </View>
+            [
+                {
+                    page: <View>
+                        <Text>Page Content</Text>
+                    </View>, 
+                    title: "Page Title"
+                },
+                {
+                    page: <View>
+                        <Text>Page Content 2</Text>
+                    </View>, 
+                    title: "Page Title 2"
+                },
+            ]
         } menu={
             menuType: "icon-list",
             list: [
