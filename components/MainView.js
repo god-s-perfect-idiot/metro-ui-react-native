@@ -76,6 +76,8 @@ export const MainView = ({ navigation, route }) => {
           pages={[
             { title: "homepage", content: <Page /> },
             { title: "simple", content: <Simple /> },
+            { title: "simple", content: <Simple /> },
+            { title: "simple", content: <Simple /> },
           ]}
           menu={{
             menuType: "simple",
