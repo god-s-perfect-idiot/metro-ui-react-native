@@ -45,3 +45,8 @@ Individual Component usages and examples can be found in each respective README 
 ## Contact
 
 If you would like to contact me, you can do so by sending me an email at [Email](mailto:samarmusthafa2014@gmail.com).
+
+## Buy me a coffee
+
+If you would like to support me, you can do so by buying me a coffee. You can do so by clicking the link below:
+https://buymeacoffee.com/godsperfectidiot
