@@ -42,6 +42,7 @@ export const Select = ({ options, onChange, title, classOverride = "" }) => {
                     onChange(option);
                     setExpanded(false);
                   }}
+                  key={index}
                 >
                   <View
                     className={`flex flex-row items-center justify-between py-1 `}

@@ -1,5 +1,11 @@
-import { useState } from "react";
-import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
+import { useRef, useState, useEffect } from "react";
+import {
+  ScrollView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  Animated,
+} from "react-native";
 import RoundedButton from "./RoundedButton";
 import * as Animatable from "react-native-animatable";
 import { fonts } from "../../../styles/fonts";
@@ -68,31 +74,49 @@ export const iconList = ({ options }) => {
 
 export const QuickMenu = ({ options }) => {
   const [expanded, setExpanded] = useState(false);
-  
+
   const toggleExpanded = () => {
     setExpanded(!expanded);
   };
 
+  const contentHeight = useRef(new Animated.Value(60)).current;
+
+  const animateExpand = () => {
+    // Start height animation
+    Animated.timing(contentHeight, {
+      toValue: expanded ? 80 : 60,
+      duration: 250,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    animateExpand();
+  }, [expanded]);
+
   return (
-    <Animatable.View
-      transition={['height']}
+    <Animated.View
+      transition={["height"]}
       duration={300}
+      // if this looks ugly, its probable because of the hardcoded values
       style={{
-        // if this looks ugly, its probable because of the hardcoded values
-        height: expanded ? 80 : 60,
+        height: contentHeight,
         marginBottom: 0,
-        flexDirection: 'row',
-        backgroundColor: '#222',
-        position: 'absolute',
+        flexDirection: "row",
+        backgroundColor: "#222",
+        position: "absolute",
         bottom: 0,
-        width: '100%',
+        width: "100%",
+        overflow: "hidden", // Important to prevent content from showing during animation
       }}
     >
       <View className={`w-[15%] flex`} />
       <View className={`w-[70%] justify-center items-center flex-row`}>
         {options.map((option, index) => (
           <TouchableWithoutFeedback onPress={option.onPress} key={index}>
-            <View className={`flex flex-col justify-between items-center mx-4 my-2 mb-3`}>
+            <View
+              className={`flex flex-col justify-between items-center mx-4 my-2 mb-3`}
+            >
               <RoundedButton Icon={option.icon} />
               {expanded && (
                 <Text className={`text-white text-xs lowercase mt-1`}>
@@ -104,12 +128,14 @@ export const QuickMenu = ({ options }) => {
         ))}
       </View>
       <TouchableWithoutFeedback onPress={toggleExpanded}>
-        <View className={`w-[15%] h-full items-start justify-center flex flex-row gap-1 pt-2`}>
+        <View
+          className={`w-[15%] h-full items-start justify-center flex flex-row gap-1 pt-2`}
+        >
           <View className={`w-1 h-1 bg-white rounded-full`} />
           <View className={`w-1 h-1 bg-white rounded-full`} />
           <View className={`w-1 h-1 bg-white rounded-full`} />
         </View>
       </TouchableWithoutFeedback>
-    </Animatable.View>
+    </Animated.View>
   );
 };
