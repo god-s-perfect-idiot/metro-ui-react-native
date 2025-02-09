@@ -35,39 +35,39 @@ export const PageView = ({ pages, menu, mainTitle }) => {
   //   console.log("Reference Pages: ", referencePages);
   // }, [currentPage, referencePages]);
 
+  // const scrollHeader = () => {
+  //   // scrollViewRef.current?.scrollTo({
+  //   //   y: pages[(currentPage - 1) >= 0 ? currentPage - 1 : 0].title.length * 32 * currentPage,
+  //   //   animated: true,
+  //   // });
+  // };
+
   const scrollHeader = () => {
-    // scrollViewRef.current?.scrollTo({
-    //   y: pages[(currentPage - 1) >= 0 ? currentPage - 1 : 0].title.length * 32 * currentPage,
-    //   animated: true,
-    // });
+    scrollViewRef.current?.scrollTo({
+      y: pages[(currentPage - 1) >= 0 ? currentPage - 1 : 0].title.length * 32 * currentPage,
+      animated: true,
+    });
+  }
 
-  };
+  const changeRight = () => {
 
-  // const rotateRight = () => {
-  //   const newPages = referencePages.slice();
-  //   const lastPage = newPages.pop();
-  //   newPages.unshift(lastPage);
-  //   setReferencePages(newPages);
-  // } 
-  
-  // const rotateLeft = () => {
-  //   // const newPages = referencePages.slice();
-  //   // const firstPage = newPages.shift();
-  //   // newPages.push(firstPage);
-  //   // setReferencePages(newPages);
+    changePage(pages.length - 1);
+  }
 
-  // }
+  const changeLeft = () => {
+    changePage(1);
+  }
 
   const arrangePages = (index) => {
     const newPages = referencePages.slice(index);
     const oldPages = referencePages.slice(0, index);
     setReferencePages(newPages.concat(oldPages));
-  }
+  };
 
   const changePage = (index) => {
     // setCurrentPage(index);
     arrangePages(index);
-  }
+  };
 
   return (
     <View className="w-full h-full flex items-start justify-start bg-black">
@@ -83,7 +83,7 @@ export const PageView = ({ pages, menu, mainTitle }) => {
             className="mb-4 flex w-full"
             horizontal={true}
             scrollEnabled={true}
-            ref={scrollViewRef}
+            // ref={scrollViewRef}
           >
             {referencePages.map((page, index) => (
               <TouchableWithoutFeedback
@@ -104,7 +104,18 @@ export const PageView = ({ pages, menu, mainTitle }) => {
             <View className="w-screen" />
           </ScrollView>
         </SafeAreaView>
-        {referencePages[0].content}
+        <View
+          onTouchStart={(e) => (this.touchX = e.nativeEvent.pageX)}
+          onTouchEnd={(e) => {
+            if (this.touchX - e.nativeEvent.pageX > 20)
+              changeLeft();
+            else if(this.touchX - e.nativeEvent.pageX < -20)
+              changeRight();
+          }} 
+          ref={scrollViewRef}
+        >
+          {referencePages[0].content}
+        </View>
       </View>
       {menu && renderMenu(menu)}
     </View>
